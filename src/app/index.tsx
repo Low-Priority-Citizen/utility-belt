@@ -1,12 +1,69 @@
-import { StyleSheet, Text, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ImageBackground,
+  Pressable,
+} from "react-native";
 import React from "react";
+import { Link } from "expo-router";
 
-export default function Home() {
+export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <View style={styles.card}>
-        <Text> This is a card</Text>
-      </View>
+      <Link href="/groupify" push asChild>
+        <Pressable style={styles.card}>
+          <ImageBackground
+            source={require("../../assets/groupify.png")?? null}
+            resizeMode="cover"
+            style={styles.image}
+            imageStyle={styles.imageBorder}
+          >
+            
+            <Text style={styles.title}>Groupify</Text>
+          </ImageBackground>
+          <ImageBackground
+            source={require("../../assets/groupify.png")?? null}
+            resizeMode="cover"
+            style={styles.image}
+            imageStyle={styles.imageBorder}
+          >
+            <Text style={styles.title}>1</Text>
+          </ImageBackground>
+          <ImageBackground
+            source={require("../../assets/groupify.png")?? null}
+            resizeMode="cover"
+            style={styles.image}
+            imageStyle={styles.imageBorder}
+          >
+            <Text style={styles.title}>2</Text>
+          </ImageBackground>
+          <ImageBackground
+            source={require("../../assets/groupify.png")?? null}
+            resizeMode="cover"
+            style={styles.image}
+            imageStyle={styles.imageBorder}
+          >
+            <Text style={styles.title}>3</Text>
+          </ImageBackground>
+          <ImageBackground
+            source={require("../../assets/groupify.png")?? null}
+            resizeMode="cover"
+            style={styles.image}
+            imageStyle={styles.imageBorder}
+          >
+            <Text style={styles.title}>4</Text>
+          </ImageBackground>
+          <ImageBackground
+            source={require("../../assets/groupify.png")?? null}
+            resizeMode="cover"
+            style={styles.image}
+            imageStyle={styles.imageBorder}
+          >
+            <Text style={styles.title}>5</Text>
+          </ImageBackground>
+        </Pressable>
+      </Link>
     </View>
   );
 }
@@ -16,21 +73,26 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-    gap: 10,
     marginVertical: 30,
   },
   title: {
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: 30,
+    color: "white",
   },
   card: {
-    // flex: 1,
-    // flexDirection: "row",
-    flexWrap: "wrap",
-    backgroundColor: "#eeeeee",
-    borderRadius: 5,
-    boxShadow: '4px 4px rgba(0,0,0,0.1)',
-    paddingHorizontal: 120,
-    paddingVertical: 60,
-  }
+    width: "90%",
+    borderRadius: 20,
+    gap: 30,
+  },
+  image: {
+    paddingVertical: 80,
+    alignItems: "center",
+    justifyContent: "center",
+    opacity: 0.9,
+    overlayColor: ""
+  },
+  imageBorder: {
+    borderRadius: 20,
+  },
 });

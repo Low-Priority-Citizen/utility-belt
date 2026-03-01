@@ -1,11 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-export default function GroupifyPage () {
+export default function GroupifyScreen () {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}> GroupifyPage
-      </Text>
+      <Text style={styles.title}> Groupify </Text>
     </View>
   )
 }
