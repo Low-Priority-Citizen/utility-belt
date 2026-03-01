@@ -6,9 +6,6 @@ export default function GroupifyPage () {
     <View style={styles.container}>
       <Text style={styles.title}> GroupifyPage
       </Text>
-      <View>
-        <Text> This is a card</Text>
-      </View>
     </View>
   )
 }
@@ -23,9 +20,4 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 20,
   },
-  card: {
-    backgroundColor: "#eeeeee",
-    borderRadius: 50,
-    boxShadow: '10px 10px rgba(0,0,0,0.1)'
-  }
 })
