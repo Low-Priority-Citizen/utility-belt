@@ -1,14 +1,16 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Link } from "expo-router";
 
-export default function SecondScreen() {
+export default function SettingsScreen() {
   return (
     <View style={styles.container}>
-      <Link href="/groupify">
-        <View style={styles.card}>
-          <Text> This is the 2nd card</Text>
-        </View>
+      <Link href="/groupify" push asChild>
+        <Pressable>
+          <View style={styles.card}>
+            <Text> This is the 2nd card</Text>
+          </View>
+        </Pressable>
       </Link>
     </View>
   );
