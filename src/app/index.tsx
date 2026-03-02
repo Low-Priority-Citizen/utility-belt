@@ -3,6 +3,8 @@ import React from "react";
 import PanelView from "../components/ui/PanelView";
 import AppButton from "../components/ui/Button";
 
+function onPress() { return (<View style={styles.container}> Hi </View>)}; 
+
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
@@ -11,10 +13,10 @@ export default function HomeScreen() {
         link="/groupify"
         imgSource={require("../../assets/groupify.png")}
       />
-      {/* <AppButton /> */}
+      <AppButton label="test" onPress={onPress}/>
       <PanelView
         title="1"
-        link="/groupify"
+        link="/settings"
         imgSource={require("../../assets/groupify.png")}
       />
       <PanelView
