@@ -1,26 +1,30 @@
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import React from "react";
 import PanelView from "../components/ui/PanelView";
 import AppButton from "../components/ui/Button";
+import { router, Stack } from "expo-router";
 
-function onPress() { return (<View style={styles.container}> Hi </View>)}; 
+const onPress = () => {
+  router.push("./groupify");
+};
 
 export default function HomeScreen() {
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
+      <Stack.Screen options={{ headerBlurEffect: "light", headerBackTitle: "Utility Belt" }} />
       <PanelView
         title="Groupify"
         link="/groupify"
         imgSource={require("../../assets/groupify.png")}
       />
-      <AppButton label="test" onPress={onPress}/>
+      <AppButton label="test" onPress={onPress} />
       <PanelView
-        title="1"
+        title="Calculator"
         link="/settings"
         imgSource={require("../../assets/groupify.png")}
       />
       <PanelView
-        title="2"
+        title="Guess that forehead"
         link="/groupify"
         imgSource={require("../../assets/groupify.png")}
       />
@@ -29,16 +33,15 @@ export default function HomeScreen() {
         link="/groupify"
         imgSource={require("../../assets/groupify.png")}
       />
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "flex-start",
+    paddingVertical: 10,
+    paddingHorizontal: 5,
     alignItems: "center",
-    marginVertical: 30,
-    gap: 20,
+    justifyContent: "center",
   },
 });

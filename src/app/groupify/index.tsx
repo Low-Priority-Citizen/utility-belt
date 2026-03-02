@@ -1,10 +1,13 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View } from 'react-native';
+import useGroupify from "../../hooks/useGroupify";
+import ModeSelector from '../../components/groupify/ModeSelector';
 
 export default function GroupifyScreen () {
+  const { participants } = useGroupify();
   return (
     <View style={styles.container}>
-      <Text style={styles.title}> Groupify </Text>
+      <Text style={styles.counter}> Participants: {participants.length} </Text>
+      <ModeSelector />
     </View>
   )
 }
@@ -12,11 +15,9 @@ export default function GroupifyScreen () {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    padding: 30,
   },
-  title: {
-    fontWeight: "bold",
+  counter: {
     fontSize: 20,
   },
 })
