@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function GroupifyScreen ( {children}: {children: React.ReactNode} ) {
   return (
-      <Text style={styles.title}>{children}</Text>
+    <Text style={styles.title}>{children}</Text>
   )
 }
 
