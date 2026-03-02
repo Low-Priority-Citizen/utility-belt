@@ -3,13 +3,15 @@ import React from 'react'
 
 export default function GroupifyScreen ( {children}: {children: React.ReactNode} ) {
   return (
-    <Text style={styles.title}>{children}</Text>
+    <Text style={styles.label}>{children}</Text>
   )
 }
 
 const styles = StyleSheet.create({
-  title: {
+  label: {
+    fontSize: 12,
     fontWeight: "bold",
-    fontSize: 20,
+    fontFamily: "sans-serif",
+    fontVariant: ["small-caps"],
   },
 })
