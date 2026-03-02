@@ -6,7 +6,6 @@ interface PanelViewProps {
   title: string;
   link: string;
   imgSource: number;
-  //   children: Readonly<{ children: React.ReactNode; }>
 }
 
 export default function PanelView({ title, link, imgSource }: PanelViewProps) {
@@ -35,14 +34,13 @@ const styles = StyleSheet.create({
   card: {
     width: "90%",
     borderRadius: 20,
-    gap: 30,
+    paddingBottom: 30,
   },
   image: {
     paddingVertical: 80,
     alignItems: "center",
     justifyContent: "center",
     opacity: 0.9,
-    overlayColor: "",
   },
   imageBorder: {
     borderRadius: 20,
