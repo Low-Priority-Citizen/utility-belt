@@ -6,7 +6,7 @@ import React from "react";
 export default function RootLayout() {
   return (
     <React.Fragment>
-      <StatusBar style="light" />
+      <StatusBar style="auto" />
       <Stack
         screenOptions={{
           headerStyle: { backgroundColor: "#111" },
