@@ -11,6 +11,7 @@ export default function useGroupify() {
 
   const addParticipant = (participant: Participant) => {
     setParticipants((prev) => [...prev, participant]);
+    console.log("Adding", participant.id);
   };
 
   const updateParticipant = (id: string, x: number, y: number) => {
@@ -21,6 +22,7 @@ export default function useGroupify() {
 
   const removeParticipant = (id: string) => {
     setParticipants((prev) => prev.filter((p) => p.id !== id));
+    console.log("Removing", id);
   };
 
   const reset = () => {

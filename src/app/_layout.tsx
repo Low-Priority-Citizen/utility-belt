@@ -1,11 +1,12 @@
 import { Stack } from "expo-router";
 import "../../global.css";
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
 
 export default function RootLayout() {
   return (
-    <React.Fragment>
+    <GestureHandlerRootView>
       <StatusBar style="light" />
       <Stack
         screenOptions={{
@@ -18,6 +19,6 @@ export default function RootLayout() {
           },
         }}
       />
-    </React.Fragment>
+    </GestureHandlerRootView>
   );
 }

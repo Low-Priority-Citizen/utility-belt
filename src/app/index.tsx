@@ -2,7 +2,7 @@ import { ScrollView, StyleSheet } from "react-native";
 import React from "react";
 import PanelView from "../components/ui/PanelView";
 import AppButton from "../components/ui/Button";
-import { router, Stack } from "expo-router";
+import { router } from "expo-router";
 import Greeting from "../components/ui/Greeting";
 
 const onPress = () => {
