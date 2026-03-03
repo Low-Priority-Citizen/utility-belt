@@ -5,7 +5,7 @@ import TouchZone from "../../components/groupify/TouchZone";
 import { Stack } from "expo-router";
 
 export default function GroupifyScreen() {
-  const { participants, mode, setMode, result, removeParticipant, addParticipant } = useGroupify();
+  const { participants, mode, setMode, result, removeParticipant, addParticipant, updateParticipant } = useGroupify();
 
   return (
     <View style={styles.container}>
@@ -15,6 +15,7 @@ export default function GroupifyScreen() {
         participants={participants}
         removeParticipant={removeParticipant}
         addParticipant={addParticipant}
+        updateParticipant={updateParticipant}
       />
     </View>
   );
