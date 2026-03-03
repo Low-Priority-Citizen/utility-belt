@@ -13,6 +13,12 @@ export default function useGroupify() {
     setParticipants((prev) => [...prev, participant]);
   };
 
+  const updateParticipant = (id: string, x: number, y: number) => {
+    setParticipants(prev =>
+      prev.map(p => p.id === id ? { ...p, x, y} : p)
+    )
+  }
+
   const removeParticipant = (id: string) => {
     setParticipants((prev) => prev.filter((p) => p.id !== id));
   };
@@ -22,10 +28,10 @@ export default function useGroupify() {
   };
 
   const result = useMemo(() => {
-    if (mode.startsWith("Random")) {
+    if (mode.startsWith("random")) {
       const count = Number(mode.split("-")[1]);
       return selectRandomParticipants(participants, count);
-    } else if (mode.startsWith("Split")) {
+    } else if (mode.startsWith("split")) {
       const groups = Number(mode.split("-")[1]);
       return splitIntoGroups(participants, groups);
     }
@@ -35,6 +41,7 @@ export default function useGroupify() {
   return {
     participants,
     addParticipant,
+    updateParticipant,
     removeParticipant,
     reset,
     mode,
