@@ -1,14 +1,18 @@
 import { StyleSheet } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import { useState } from "react";
 import { GroupifyMode } from "../../types/groupifyMode";
 
-export default function ModeSelector() {
-  const [mode, setMode] = useState<GroupifyMode>("split-2");
+export default function ModeSelector({
+  mode,
+  onChange,
+}: {
+  mode: GroupifyMode;
+  onChange: (mode: GroupifyMode) => void;
+}) {
   return (
     <Picker
       selectedValue={mode}
-      onValueChange={(itemValue) => setMode(itemValue)}
+      onValueChange={(itemValue) => onChange(itemValue as GroupifyMode)}
     >
       <Picker.Item label="Random 1" value="random-1" />
       <Picker.Item label="Random 2" value="random-2" />
