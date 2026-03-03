@@ -12,9 +12,6 @@ const onPress = () => {
 export default function HomeScreen() {
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Stack.Screen
-        options={{ headerBlurEffect: "light", headerBackTitle: "Utility Belt" }}
-      />
       <Greeting />
       <PanelView
         title="Groupify"

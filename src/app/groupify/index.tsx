@@ -1,15 +1,21 @@
 import { StyleSheet, Text, View } from "react-native";
 import useGroupify from "../../hooks/useGroupify";
 import ModeSelector from "../../components/groupify/ModeSelector";
+import TouchZone from "../../components/groupify/TouchZone";
+import { Stack } from "expo-router";
 
 export default function GroupifyScreen() {
-  const { participants, mode, setMode, result } = useGroupify();
-  
+  const { participants, mode, setMode, result, removeParticipant, addParticipant } = useGroupify();
+
   return (
     <View style={styles.container}>
       <Text style={styles.counter}> Participants: {participants.length} </Text>
-      <ModeSelector mode={mode} onChange={setMode}/>
-      <Text style={styles.counter}> Selected: {result.length} </Text>
+      <ModeSelector mode={mode} onChange={setMode} />
+      <TouchZone
+        participants={participants}
+        removeParticipant={removeParticipant}
+        addParticipant={addParticipant}
+      />
     </View>
   );
 }
@@ -17,7 +23,6 @@ export default function GroupifyScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 30,
   },
   counter: {
     fontSize: 20,
