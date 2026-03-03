@@ -3,6 +3,7 @@ import React from "react";
 import PanelView from "../components/ui/PanelView";
 import AppButton from "../components/ui/Button";
 import { router, Stack } from "expo-router";
+import Greeting from "../components/ui/Greeting";
 
 const onPress = () => {
   router.push("./groupify");
@@ -11,7 +12,10 @@ const onPress = () => {
 export default function HomeScreen() {
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Stack.Screen options={{ headerBlurEffect: "light", headerBackTitle: "Utility Belt" }} />
+      <Stack.Screen
+        options={{ headerBlurEffect: "light", headerBackTitle: "Utility Belt" }}
+      />
+      <Greeting />
       <PanelView
         title="Groupify"
         link="/groupify"
