@@ -2,7 +2,6 @@ import { StyleSheet, Text, View } from "react-native";
 import useGroupify from "../../hooks/useGroupify";
 import ModeSelector from "../../components/groupify/ModeSelector";
 import TouchZone from "../../components/groupify/TouchZone";
-import { Stack } from "expo-router";
 
 export default function GroupifyScreen() {
   const { participants, mode, setMode, result, removeParticipant, addParticipant, updateParticipant } = useGroupify();

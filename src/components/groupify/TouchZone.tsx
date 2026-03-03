@@ -1,5 +1,6 @@
 import { View, GestureResponderEvent, StyleSheet } from "react-native";
 import { Participant } from "../../types/groupify";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
 
 export default function TouchZone({
   participants,
@@ -12,64 +13,49 @@ export default function TouchZone({
   removeParticipant: (id: string) => void;
   updateParticipant: (id: string, x: number, y: number) => void;
 }) {
-  const handleGrant = (event: GestureResponderEvent) => {
-    event.nativeEvent.changedTouches.forEach((touch) => {
-      const id = String(touch.identifier);
-
-      const exists = participants.some((p) => p.id === id);
-      if (!exists) {
+  const gesture = Gesture.Pan()
+    .onTouchesDown((event) => {
+      event.changedTouches.forEach((touch) => {
+        const id = String(touch.id);
         addParticipant({
           id,
-          x: touch.pageX,
-          y: touch.pageY,
+          x: touch.x,
+          y: touch.y,
         });
-      }
-    });
-  };
-
-  const handleMove = (event: GestureResponderEvent) => {
-    event.nativeEvent.touches.forEach((touch) => {
-      updateParticipant(String(touch.identifier), touch.pageX, touch.pageY);
-    });
-  };
-
-  const handleRelease = (event: GestureResponderEvent) => {
-    const touches = event.nativeEvent.changedTouches;
-    touches.forEach((touch) => {
-      removeParticipant(String(touch.identifier));
-    });
-  };
+      });
+    })
+    .onTouchesMove((event) => {
+      event.allTouches.forEach((touch) => {
+        updateParticipant(String(touch.id), touch.x, touch.y);
+      });
+    })
+    .onTouchesUp((event) => {
+      event.changedTouches.forEach((touch) => {
+        removeParticipant(String(touch.id));
+      });
+    })
+    .maxPointers(10);
 
   return (
-    <View
-      style={{ flex: 1, backgroundColor: "#000" }}
-      onStartShouldSetResponder={() => true}
-      onResponderGrant={handleGrant}
-      onResponderMove={handleMove}
-      onResponderRelease={handleRelease}
-    >
-      {participants.map((p) => (
-        <View
-          key={p.id}
-          style={[
-            styles.circle,
-            {
-              left: p.x - 30,
-              top: p.y - 200,
-            },
-          ]}
-        />
-      ))}
-    </View>
+    <GestureDetector gesture={gesture}>
+      <View style={{ flex: 1, backgroundColor: "#000" }}>
+        {participants.map((p) => (
+          <View
+            key={p.id}
+            style={[
+              {
+                position: "absolute",
+                width: 60,
+                height: 60,
+                borderRadius: 30,
+                backgroundColor: "#4f46e5",
+                left: p.x - 30,
+                top: p.y - 30,
+              },
+            ]}
+          />
+        ))}
+      </View>
+    </GestureDetector>
   );
 }
-
-const styles = StyleSheet.create({
-  circle: {
-    position: "relative",
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    backgroundColor: "#4f46e5",
-  },
-});
