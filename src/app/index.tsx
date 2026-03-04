@@ -18,7 +18,12 @@ export default function HomeScreen() {
         link="/groupify"
         imgSource={require("../../assets/groupify.png")}
       />
-      <AppButton label="test" onPress={onPress} />
+      <AppButton
+        label="test"
+        onPress={() => {
+          router.push("./groupify");
+        }}
+      />
       <PanelView
         title="Calculator"
         link="/settings"

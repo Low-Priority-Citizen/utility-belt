@@ -2,7 +2,6 @@ import { View } from "react-native";
 import { Participant } from "../../types/groupify";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Bubble from "../../components/groupify/Bubble";
-import useGroupify from "../../hooks/useGroupify";
 import { useRef } from "react";
 
 interface Props {
