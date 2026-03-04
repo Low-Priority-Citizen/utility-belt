@@ -1,59 +1,66 @@
-import { View, GestureResponderEvent, StyleSheet } from "react-native";
+import { View } from "react-native";
 import { Participant } from "../../types/groupify";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import Bubble from "../../components/groupify/Bubble";
+import useGroupify from "../../hooks/useGroupify";
+import { useRef } from "react";
+
+interface Props {
+  participants: Participant[];
+  addParticipant: (p: Participant) => void;
+  updateParticipant: (id: string, x: number, y: number) => void;
+  removeParticipant: (id: string) => void;
+}
 
 export default function TouchZone({
   participants,
   addParticipant,
-  removeParticipant,
   updateParticipant,
-}: {
-  participants: Participant[];
-  addParticipant: (participant: Participant) => void;
-  removeParticipant: (id: string) => void;
-  updateParticipant: (id: string, x: number, y: number) => void;
-}) {
+  removeParticipant,
+}: Props) {
+  const activeTouches = useRef<Map<number, string>>(new Map());
+
   const gesture = Gesture.Pan()
+    .minPointers(1)
+    .maxPointers(10)
     .onTouchesDown((event) => {
       event.changedTouches.forEach((touch) => {
-        const id = String(touch.id);
+        if (participants.find((p) => p.id.startsWith(String(touch.id)))) return;
+        const fingerId = touch.id;
+        const participantId = `p-${fingerId}-${Date.now()}`;
+        activeTouches.current.set(fingerId, participantId);
+        console.log("touch down", touch);
         addParticipant({
-          id,
-          x: touch.x,
-          y: touch.y,
+          id: participantId,
+          x: touch.absoluteX,
+          y: touch.absoluteY,
         });
       });
     })
     .onTouchesMove((event) => {
       event.allTouches.forEach((touch) => {
-        updateParticipant(String(touch.id), touch.x, touch.y);
+        const fingerId = touch.id;
+        const participantId = activeTouches.current.get(fingerId);
+
+        if (!participantId) return;
+
+        updateParticipant(participantId, touch.absoluteX, touch.absoluteY);
       });
     })
     .onTouchesUp((event) => {
       event.changedTouches.forEach((touch) => {
-        removeParticipant(String(touch.id));
+        const fingerId = touch.id;
+        const participantId = activeTouches.current.get(fingerId);
+        if (!participantId) return;
+        removeParticipant(participantId);
+        activeTouches.current.delete(fingerId);
       });
-    })
-    .maxPointers(10);
-
+    });
   return (
     <GestureDetector gesture={gesture}>
       <View style={{ flex: 1, backgroundColor: "#000" }}>
         {participants.map((p) => (
-          <View
-            key={p.id}
-            style={[
-              {
-                position: "absolute",
-                width: 60,
-                height: 60,
-                borderRadius: 30,
-                backgroundColor: "#4f46e5",
-                left: p.x - 30,
-                top: p.y - 30,
-              },
-            ]}
-          />
+          <Bubble key={p.id} participant={p} />
         ))}
       </View>
     </GestureDetector>

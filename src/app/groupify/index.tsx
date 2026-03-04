@@ -4,12 +4,24 @@ import ModeSelector from "../../components/groupify/ModeSelector";
 import TouchZone from "../../components/groupify/TouchZone";
 
 export default function GroupifyScreen() {
-  const { participants, mode, setMode, result, removeParticipant, addParticipant, updateParticipant } = useGroupify();
+  const {
+    participants,
+    mode,
+    setMode,
+    countdown,
+    removeParticipant,
+    addParticipant,
+    updateParticipant,
+    phase,
+  } = useGroupify();
 
   return (
     <View style={styles.container}>
       <Text style={styles.counter}> Participants: {participants.length} </Text>
       <ModeSelector mode={mode} onChange={setMode} />
+      {phase === "countdown" && (
+        <Text style={styles.countdown}>{countdown}</Text>
+      )}
       <TouchZone
         participants={participants}
         removeParticipant={removeParticipant}
@@ -26,5 +38,13 @@ const styles = StyleSheet.create({
   },
   counter: {
     fontSize: 20,
+  },
+  countdown: {
+    position: "absolute",
+    top: 100,
+    alignSelf: "center",
+    fontSize: 60,
+    color: "white",
+    zIndex: 10,
   },
 });
